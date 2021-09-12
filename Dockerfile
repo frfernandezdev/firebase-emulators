@@ -1,7 +1,11 @@
 FROM node:alpine
-WORKDIR /app
-RUN yarn global add firebase-tools
-COPY ./firebase.json .
-COPY ./firebaserc .
 
-CMD ["firebase", "emulators:start"]
+RUN yarn global add firebase-tools
+WORKDIR /app
+
+COPY ./firebase.json ./
+COPY ./entrypoint.sh ./
+
+EXPOSE 9099 9000
+
+CMD "./entrypoint.sh"
