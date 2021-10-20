@@ -1,11 +1,12 @@
 FROM node:alpine
 
 RUN yarn global add firebase-tools
-WORKDIR /app
+WORKDIR /srv/app
 
-COPY ./firebase.json ./
-COPY ./entrypoint.sh ./
+VOLUME /srv/app
+
+COPY ./docker-entrypoint.sh ./
 
 EXPOSE 9099 9000
 
-CMD "./entrypoint.sh"
+CMD "./docker-entrypoint.sh"
